@@ -11,7 +11,7 @@
 
 struct edge
 {
-    bool operator<(const struct edge e)
+    bool operator<(const struct edge& e)
     {
         return u < e.v;
     }

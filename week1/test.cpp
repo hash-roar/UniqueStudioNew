@@ -20,7 +20,11 @@ int hashFunc(str &key)
 
 int main()
 {
-    str test = "hello3";
-    cout << hashFunc(test) << endl;
+    int *p;
+    if (!p)
+    {
+        cout<<"hllo"<<endl;
+    }
+    
     return 0;
 }
