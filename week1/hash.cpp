@@ -2,13 +2,18 @@
 // hashItem::hashItem(/* args */)
 // {
 // }
-hashNode::~hashNode()
-{
-}
 
 hashTable::hashTable(/* args */)
 {
     tbItem.resize(HASH_SIZE);
+    for (auto &item : tbItem)
+    {
+        item = new struct hashNode;
+    }
+}
+
+hashTable::~hashTable()
+{
     for (auto &itemP : tbItem)
     {
         if (itemP != nullptr)
@@ -20,16 +25,6 @@ hashTable::hashTable(/* args */)
                 delete itemP;
                 itemP = head;
             }
-        }
-    }
-}
-
-hashTable::~hashTable()
-{
-    for (auto &itemP : tbItem)
-    {
-        if (itemP != nullptr)
-        {
         }
     }
 }
@@ -46,31 +41,39 @@ int hashTable::hashFunc(str &key)
     return h % HASH_SIZE;
 }
 
-int hashTable::add(struct hashNode &item)
+int hashTable::add(str key, str value)
 {
-    int hashIndex = hashFunc(item.key);
+    int hashIndex = hashFunc(key);
     auto itemP = tbItem[hashIndex];
-    if (item.key == "")
+    if (key == "")
     {
         return -1;
     }
 
-    while (itemP != nullptr)
+    while (itemP->next)
     {
         itemP = itemP->next;
     }
-    itemP->next = new struct hashNode(item);
+    auto newP = new struct hashNode;
+    newP->key = key;
+    newP->value = value;
+    if (!newP)
+    {
+        printf("new error");
+        return -1;
+    }
+    itemP->next = newP;
     itemP->next->next = nullptr;
     return hashIndex;
 }
 
-int hashTable::add(str key, str value)
-{
-    struct hashNode node(key, value);
-    add(node);
-}
+// int hashTable::add(str key, str value)
+// {
+//     struct hashNode node;
+//     return add(node);
+// }
 
-const struct hashNode *hashTable::get(str &key)
+const struct hashNode *hashTable::get(str key)
 {
     if (key == "")
     {
@@ -152,4 +155,5 @@ int hashTable::remove(str &key)
         }
         return -1;
     }
+    return hashIndex;
 }

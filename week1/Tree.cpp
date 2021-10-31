@@ -1,6 +1,6 @@
 #include "Tree.h"
 
-Tree::Tree(std::string k = "", std::string v = "")
+Tree::Tree(std::string k, std::string v)
 {
     root = new treeNode(k, v);
 }
@@ -32,7 +32,7 @@ void Tree::noRecurPreOrder(treeNode *root)
 
     std::vector<treeNode *> stack;
     treeNode *node = root;
-    while (node || stack.empty())
+    while (node || !stack.empty())
     {
         while (node)
         {
@@ -73,14 +73,13 @@ void Tree::noRecurInOrder(treeNode *root)
         {
             stackQ.push_back(node);
             node = node->left;
-            // }
-            if (!stackQ.empty())
-            {
-                node = stackQ.back();
-                stackQ.pop_back();
-                visit(node);
-                node = node->right;
-            }
+        }
+        if (!stackQ.empty())
+        {
+            node = stackQ.back();
+            stackQ.pop_back();
+            visit(node);
+            node = node->right;
         }
     }
 }
@@ -113,7 +112,7 @@ void Tree::noRecurPostOrder(treeNode *root)
             node = node->left;
         }
         node = stackQ.back();
-        if (node->right || flag == node->right)
+        if (!node->right || flag == node->right)
         {
             visit(node);
             flag = node;
@@ -140,11 +139,11 @@ void Tree::levelOrder(treeNode *root)
         treeNode *temp = nodeQ.front();
         nodeQ.pop();
         visit(temp);
-        if (!temp->left)
+        if (temp->left)
         {
             nodeQ.push(temp->left);
         }
-        if (!temp->right)
+        if (temp->right)
         {
             nodeQ.push(temp->right);
         }
@@ -187,11 +186,11 @@ struct treeNode *Tree::bfs(treeNode *root, std::string key)
         {
             return nodeQ.front();
         }
-        if (!nodeQ.front()->left)
+        if (nodeQ.front()->left)
         {
             nodeQ.push(nodeQ.front()->left);
         }
-        if (!nodeQ.front()->right)
+        if (nodeQ.front()->right)
         {
             nodeQ.push(nodeQ.front()->right);
         }

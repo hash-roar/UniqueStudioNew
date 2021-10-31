@@ -7,7 +7,7 @@
 using str = std::string;
 const int HASH_SIZE = 97;
 
-//shoud be a templete
+//should be a template
 // class hashNode
 // {
 // private:
@@ -22,13 +22,11 @@ const int HASH_SIZE = 97;
 
  struct hashNode
 {
-    str key;
-    str value;
-    hashNode *next;
-    hashNode(str& k,str &v):key(k),value(v)
-    {
-    }
+    str key="";
+    str value="";
+    hashNode *next=nullptr;
 };
+
 
 class hashTable
 {
@@ -40,7 +38,7 @@ public:
     hashTable(/* args */);
     ~hashTable();
     int hashFunc(str &key); //hash function
-    const struct hashNode* get(str &key);
+    const struct hashNode* get(str key);
     int add( struct hashNode &item);
     int add(str key,str value);
     int set(str &key,str &value);

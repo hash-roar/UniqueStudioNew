@@ -15,7 +15,7 @@ listNode *skipList::Find(int key)
     auto node = headNode;
     while (node)
     {
-        if (node->key = key)
+        if (node->key == key)
         {
             return node;
         }
@@ -80,7 +80,7 @@ void skipList::Insert(const struct listNode &node)
     // }
     std::vector<listNode *> stack;
     auto indexNode = headNode;
-    while (!indexNode)
+    while (indexNode)
     {
         if (!indexNode->next)
         {
@@ -94,7 +94,11 @@ void skipList::Insert(const struct listNode &node)
         }
         else if (indexNode->key == key)
         {
-            indexNode->data = node.data;
+            while (indexNode)
+            {
+                indexNode->data = node.data;
+                indexNode = indexNode->down;
+            }
             return;
         }
         else
@@ -104,6 +108,7 @@ void skipList::Insert(const struct listNode &node)
     }
     int index_level = randomLevel();
     listNode *nodeDown = nullptr;
+    int level = 1;
     for (int i = 0; i < index_level; i++)
     {
         if (!stack.empty())
@@ -112,9 +117,11 @@ void skipList::Insert(const struct listNode &node)
             stack.pop_back();
             auto temp = nodeUp->next;
             nodeUp->next = new listNode(node);
+            nodeUp->next->key = node.key;
+            nodeUp->next->data = node.data;
             nodeUp->next->down = nodeDown;
             nodeUp->next->next = temp;
-            nodeDown = nodeUp;
+            nodeDown = nodeUp->next;
         }
         else
         {
@@ -123,6 +130,8 @@ void skipList::Insert(const struct listNode &node)
             headNodeUp->down = headNode;
             headNode = headNodeUp;
             headNodeUp->next = new listNode(node);
+            headNodeUp->next->key = node.key;
+            headNodeUp->next->data = node.data;
             headNodeUp->next->down = nodeDown;
             nodeDown = headNodeUp->next;
         }

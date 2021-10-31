@@ -18,7 +18,7 @@ struct lruNode
 class LRU
 {
     using str = std::string;
-    std::list<lruNode> _nodeList;
+    std::list<lruNode*> _nodeList;
     int _capacity;
 
 private:
@@ -31,8 +31,5 @@ public:
     }
 };
 
-LRU::~LRU()
-{
-}
 
 #endif

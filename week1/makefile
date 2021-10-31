@@ -14,7 +14,7 @@
 # clean:
 #         rm $(target) $(obj)
 app:test.cpp
-	g++ -g test.cpp -o app
+	g++ -g test.cpp avlTree.cpp LRU.cpp hash.cpp infixToSuffix.cpp skipList.cpp Tree.cpp -o app
 
 clean:
 	rm app

@@ -19,6 +19,11 @@ int infixToSuffix::getType(char c)
     {
         return 2;
     }
+    if (c=='('||c==')')
+    {
+        return 3;
+    }
+    
     return 0;
 }
 

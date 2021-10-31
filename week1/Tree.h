@@ -20,9 +20,9 @@ class Tree
 {
 private:
     /* data */
-    treeNode *root;
 
 public:
+    treeNode *root;
     Tree(std::string k = "", std::string v = "");
     ~Tree();
     void visit(treeNode *node);

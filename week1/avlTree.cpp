@@ -1,16 +1,19 @@
 #include "avlTree.h"
 
-avlTree::avlTree(/* args */)
+avlTree::avlTree(int value)
 {
+    root = new treeNode;
+    root->value = value;
 }
 
 avlTree::~avlTree()
 {
+    //delete
 }
 
 int avlTree::getHeight(treeNode *node)
 {
-    if (node)
+    if (node!=nullptr)
     {
         return std::max(getHeight(node->left), getHeight(node->right)) + 1;
     }
@@ -23,7 +26,7 @@ int avlTree::getBalanceFactor(treeNode *node)
     {
         return getHeight(node->left) - getHeight(node->right);
     }
-    return -1;
+    return 0;
 }
 
 treeNode *avlTree::rightRotation(treeNode *node)
@@ -45,6 +48,7 @@ treeNode *avlTree::leftRotation(treeNode *node)
     node->left = nodeRL;
     node->height = std::max(getHeight(node->left), getHeight(node->right)) + 1;
     nodeR->height = std::max(getHeight(nodeR->left), getHeight(nodeR->right)) + 1;
+    return nodeR;
 }
 
 treeNode *avlTree::reBalance(treeNode *node)
@@ -74,28 +78,29 @@ treeNode *avlTree::reBalance(treeNode *node)
     }
 }
 
-void avlTree::Insert(treeNode *node, int value)
+treeNode *avlTree::Insert(treeNode *node, int value)
 {
     if (!node)
     {
         node = new treeNode;
         node->value = value;
-        return;
+        return node;
     }
     else if (node->value == value)
     {
-        return;
+        return node;
     }
     else if (node->value > value)
     {
-        Insert(node->left, value);
+        node->left = Insert(node->left, value);
     }
     else
     {
-        Insert(node->right, value);
+        node->right = Insert(node->right, value);
     }
     node->height = std::max(getHeight(node->left), getHeight(node->right)) + 1;
-    reBalance(node);
+    node = reBalance(node);
+    return node;
 }
 
 treeNode *avlTree::Delete(treeNode *node, int value)
@@ -106,25 +111,31 @@ treeNode *avlTree::Delete(treeNode *node, int value)
     }
     if (value < node->value)
     {
-        return Delete(node->left, value);
+        node = Delete(node->left, value);
+        return node;
     }
     else if (value > node->value)
     {
-        return Delete(node->right, value);
+        node = Delete(node->right, value);
+        return node;
     }
     if (!node->left || !node->right)
     {
         if (!node->left && !node->right)
         {
             delete node;
+            node = nullptr;
+            return node;
         }
         else if (node->left && !node->right)
         {
             node = node->left;
+            return node;
         }
         else
         {
             node = node->right;
+            return node;
         }
     }
     else
@@ -133,8 +144,9 @@ treeNode *avlTree::Delete(treeNode *node, int value)
         node->value = minSon->value;
         node->right = Delete(node->right, minSon->value);
     }
+    node = reBalance(node);
     node->height = std::max(getHeight(node->left), getHeight(node->right)) + 1;
-    return reBalance(node);
+    return node;
 }
 
 treeNode *avlTree::Find(treeNode *node, int value)

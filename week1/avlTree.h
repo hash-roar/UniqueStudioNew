@@ -16,10 +16,10 @@ typedef struct treeNode treeNode;
 class avlTree
 {
 private:
-    treeNode *root;
 
 public:
-    avlTree(/* args */);
+    treeNode *root;
+    avlTree(int value);
     ~avlTree();
 
 public:
@@ -32,13 +32,13 @@ public:
 
 public:
     //curd
-    void Insert(treeNode *node, int value);
+    treeNode* Insert(treeNode *node, int value);
     treeNode *Delete(treeNode *node, int value);
     treeNode *Find(treeNode *node, int value);
     void change(treeNode *node);
     treeNode *getMax(treeNode *node)
     {
-        while (!node->right)
+        while (node->right)
         {
             node = node->right;
         }
@@ -46,7 +46,7 @@ public:
     }
     treeNode *getMin(treeNode *node)
     {
-        while (!node->left)
+        while (node->left)
         {
             node = node->left;
         }
