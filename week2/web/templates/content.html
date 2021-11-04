@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>everybody fucks</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css" rel="stylesheet" />
+    <style>
+        /* body {
+            border-radius: 0;
+        } */
+    </style>
+</head>
+
+<body>
+    <nav class=" navbar navbar-dark bg-secondary py-0 navbar-expand">
+        <button style="  border-radius: 0;" class=" btn btn-block w-25 bg-warning ml-5">FUCK</button>
+    </nav>
+    <div class="container px-0 mb-5 pt-3">
+        <div class="row py-3">
+            <h2>Paste from {{.poster}}</h2>
+        </div>
+        <!-- <form action="">
+            <fieldset disabled="disabled">
+                <div class="row px-0">
+                    <textarea name="" class="form-control disabled" id="" cols="30" rows="10"></textarea>
+                </div>
+            </fieldset>
+        </form> -->
+        <pre><code class="{{.syntax}}">{{.content}}</code></pre>
+        <button class="ml-0 btn btn-outline-success btn-block w-25 mt-2">view raw</button>
+    </div>
+
+    <div class=" jumbotron jumbotron-fluid p-5 mb-0">
+        <div class=" container">
+            <form action="" class="form-group" method="post">
+                <div class="row">
+                    <div class="col-sm p-0"> <label for="">Poster:</label><input type="text" name="poster"
+                            class=" form-control"></div>
+                    <div class="col-sm px-3 mb-3">
+                        <label for="">Syntax</label>
+                        <select name="syntax" class=" form-control" id="">
+                            <option value="plaintext">plaintext</option>
+                        </select>
+                    </div>
+                    <div class="col-sm p-0">
+                        <label for="expiration">Expiration</label>
+                        <select name="expiration" class=" form-control" id="expiration">
+                            <option value="n">none</option>
+                            <option value="h">one hour</option>
+                            <option value="d">one day</option>
+                            <option value="w">one week</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="row ">
+                    <label for="">Content</label>
+                    <textarea name="content" class="form-control" id="" cols="30" rows="10"></textarea>
+                </div>
+                <div class="row mt-2"> <button class=" form-control btn-block btn-outline-success">submit</button></div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-core.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+
+</html>
