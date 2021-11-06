@@ -32,12 +32,14 @@
             </fieldset>
         </form> -->
         <pre><code class="{{.syntax}}">{{.content}}</code></pre>
-        <button class="ml-0 btn btn-outline-success btn-block w-25 mt-2">view raw</button>
+        <form action="/raw/{{.urlindex}}" method="get">
+            <button class="ml-0 btn btn-outline-success btn-block w-25 mt-2">view raw</button>
+        </form>
     </div>
 
     <div class=" jumbotron jumbotron-fluid p-5 mb-0">
         <div class=" container">
-            <form action="" class="form-group" method="post">
+            <form action="/post" class="form-group" method="post">
                 <div class="row">
                     <div class="col-sm p-0"> <label for="">Poster:</label><input type="text" name="poster"
                             class=" form-control"></div>
@@ -45,15 +47,18 @@
                         <label for="">Syntax</label>
                         <select name="syntax" class=" form-control" id="">
                             <option value="plaintext">plaintext</option>
+                            <option value="language-css">language-css</option>
+                            <option value="language-go">language-golang</option>
+                            <option value="language-c++">language-c++</option>
                         </select>
                     </div>
                     <div class="col-sm p-0">
                         <label for="expiration">Expiration</label>
                         <select name="expiration" class=" form-control" id="expiration">
                             <option value="n">none</option>
-                            <option value="h">one hour</option>
-                            <option value="d">one day</option>
-                            <option value="w">one week</option>
+                            <option value="1h">one hour</option>
+                            <option value="1d">one day</option>
+                            <option value="7d">one week</option>
                         </select>
                     </div>
 
