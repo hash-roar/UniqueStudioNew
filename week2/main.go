@@ -11,7 +11,7 @@ func main() {
 	router.LoadHTMLGlob("web/templates/*")
 	router.GET("/", routers.GetIndex)
 	router.POST("/post", routers.Getpost)
-	router.GET("/pastes/:url", routers.Getpaste)
+	router.GET("/pastes/:url", routers.GetPastePage)
 	router.GET("/raw/:url", routers.GetRaw)
 	router.StaticFile("/favicon.ico", "./web/assets/girl.ico")
 	router.Static("/static", "./web/assets")

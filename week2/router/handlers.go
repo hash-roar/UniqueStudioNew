@@ -4,10 +4,13 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"pastebin/cache"
 	"pastebin/database/handler"
 	"pastebin/database/model"
+	"strconv"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -42,20 +45,35 @@ import (
 // 	c.Redirect(http.StatusMovedPermanently, "/pastes/"+hex.EncodeToString(data_md5[:]))
 // }
 
+func getExpireTime(data *model.Pastecode) (expireTime time.Time) {
+	expireTime = data.CreatedAt
+	if data.Expiration == "n" {
+		expireTime.AddDate(20, 0, 0)
+	} else if strings.HasSuffix(data.Expiration, "d") {
+		num, _ := strconv.ParseInt(data.Expiration[0:len(data.Expiration)-1], 10, 32)
+		expireTime.AddDate(0, 0, int(num))
+	} else {
+		t, _ := time.ParseDuration(data.Expiration)
+		expireTime = expireTime.Add(t)
+	}
+	return
+}
+
 func getData(key string) (*model.Pastecode, bool) { //获取pastebin数据
 	var data *model.Pastecode
+	fmt.Println(cache.LruCache)
 	if temp, ok := cache.LruCache.Get(key); ok {
 		tempData := temp.(*model.Pastecode)
-		t, _ := time.ParseDuration(data.Expiration)
-		expire_time := tempData.CreatedAt.Add(t)
+		data = tempData
 
+		expire_time := getExpireTime(data)
 		if expire_time.Before(time.Now()) {
 			cache.LruCache.Delete(data.UrlIndex)
-			return nil, false
 		} else {
 			data = tempData
+			return data, true
 		}
-		return data, true
+
 	}
 	if temp, row := handler.Getpastedata(key); row > 0 {
 		data = temp
@@ -78,13 +96,16 @@ func Getpost(c *gin.Context) {
 
 	// }
 	post.CreatedAt = time.Now()
+	if _, err := handler.Addpastedata(&post); err != nil {
+		fmt.Println(err)
+	}
 	if ok := handler.WriteCache(&post); ok {
 		c.Redirect(http.StatusMovedPermanently, "/pastes/"+hex.EncodeToString(data_md5[:]))
 	}
 
 }
 
-func Getpaste(c *gin.Context) {
+func GetPastePage(c *gin.Context) {
 	urlIndex := c.Param("url")
 	var post *model.Pastecode
 	if temp, ok := getData(urlIndex); ok {
