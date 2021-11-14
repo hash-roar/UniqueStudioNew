@@ -1,0 +1,15 @@
+"filename", "language", "Go", "XML", "Go Checksum File", "comment", "blank", "total"
+"d:\working\UniqueStudioNew\week3\clause\builder.go", "Go", 101, 0, 0, 7, 19, 127
+"d:\working\UniqueStudioNew\week3\clause\clause.go", "Go", 39, 0, 0, 0, 7, 46
+"d:\working\UniqueStudioNew\week3\dialect\dialect.go", "Go", 15, 0, 0, 0, 6, 21
+"d:\working\UniqueStudioNew\week3\dialect\postgresql.go", "Go", 38, 0, 0, 0, 7, 45
+"d:\working\UniqueStudioNew\week3\go.mod", "XML", 0, 19, 0, 0, 4, 23
+"d:\working\UniqueStudioNew\week3\go.sum", "Go Checksum File", 0, 0, 177, 0, 1, 178
+"d:\working\UniqueStudioNew\week3\lform.go", "Go", 41, 0, 0, 0, 5, 46
+"d:\working\UniqueStudioNew\week3\schema\schema_test.go", "Go", 1, 0, 0, 0, 1, 2
+"d:\working\UniqueStudioNew\week3\schema\shcema.go", "Go", 89, 0, 0, 1, 10, 100
+"d:\working\UniqueStudioNew\week3\session\curd.go", "Go", 111, 0, 0, 3, 16, 130
+"d:\working\UniqueStudioNew\week3\session\raw.go", "Go", 56, 0, 0, 0, 9, 65
+"d:\working\UniqueStudioNew\week3\session\table.go", "Go", 18, 0, 0, 0, 5, 23
+"d:\working\UniqueStudioNew\week3\test\test.go", "Go", 22, 0, 0, 14, 6, 42
+"Total", "-", 531, 19, 177, 25, 96, 848

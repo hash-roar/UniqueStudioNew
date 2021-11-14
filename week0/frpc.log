@@ -1,0 +1,3 @@
+2021/11/07 17:12:37 [I] [service.go:301] [2e62edfd13053643] login to server success, get run id [2e62edfd13053643], server udp port [0]
+2021/11/07 17:12:37 [I] [proxy_manager.go:144] [2e62edfd13053643] proxy added: [D_static_file]
+2021/11/07 17:12:37 [I] [control.go:180] [2e62edfd13053643] [D_static_file] start proxy success

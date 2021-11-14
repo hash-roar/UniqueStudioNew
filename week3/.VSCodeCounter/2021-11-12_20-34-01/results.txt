@@ -1,0 +1,44 @@
+Date : 2021-11-12 20:34:01
+Directory : d:\working\UniqueStudioNew\week3
+Total : 13 files,  727 codes, 25 comments, 96 blanks, all 848 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| Go               |         11 |        531 |         25 |         91 |        647 |
+| Go Checksum File |          1 |        177 |          0 |          1 |        178 |
+| XML              |          1 |         19 |          0 |          4 |         23 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                   | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                      |         13 |        727 |         25 |         96 |        848 |
+| clause                                                 |          2 |        140 |          7 |         26 |        173 |
+| dialect                                                |          2 |         53 |          0 |         13 |         66 |
+| schema                                                 |          2 |         90 |          1 |         11 |        102 |
+| session                                                |          3 |        185 |          3 |         30 |        218 |
+| test                                                   |          1 |         22 |         14 |          6 |         42 |
++--------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                               | language         | code       | comment    | blank      | total      |
++--------------------------------------------------------+------------------+------------+------------+------------+------------+
+| d:\working\UniqueStudioNew\week3\clause\builder.go     | Go               |        101 |          7 |         19 |        127 |
+| d:\working\UniqueStudioNew\week3\clause\clause.go      | Go               |         39 |          0 |          7 |         46 |
+| d:\working\UniqueStudioNew\week3\dialect\dialect.go    | Go               |         15 |          0 |          6 |         21 |
+| d:\working\UniqueStudioNew\week3\dialect\postgresql.go | Go               |         38 |          0 |          7 |         45 |
+| d:\working\UniqueStudioNew\week3\go.mod                | XML              |         19 |          0 |          4 |         23 |
+| d:\working\UniqueStudioNew\week3\go.sum                | Go Checksum File |        177 |          0 |          1 |        178 |
+| d:\working\UniqueStudioNew\week3\lform.go              | Go               |         41 |          0 |          5 |         46 |
+| d:\working\UniqueStudioNew\week3\schema\schema_test.go | Go               |          1 |          0 |          1 |          2 |
+| d:\working\UniqueStudioNew\week3\schema\shcema.go      | Go               |         89 |          1 |         10 |        100 |
+| d:\working\UniqueStudioNew\week3\session\curd.go       | Go               |        111 |          3 |         16 |        130 |
+| d:\working\UniqueStudioNew\week3\session\raw.go        | Go               |         56 |          0 |          9 |         65 |
+| d:\working\UniqueStudioNew\week3\session\table.go      | Go               |         18 |          0 |          5 |         23 |
+| d:\working\UniqueStudioNew\week3\test\test.go          | Go               |         22 |         14 |          6 |         42 |
+| Total                                                  |                  |        727 |         25 |         96 |        848 |
++--------------------------------------------------------+------------------+------------+------------+------------+------------+
