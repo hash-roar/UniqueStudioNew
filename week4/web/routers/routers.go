@@ -27,7 +27,7 @@ func initAuthApi() {
 	router.POST("/register", register)
 }
 func initDailyReportApi() {
-	router.GET("/index", Index)
+	router.GET("/", Index)
 }
 
 func Run() {
