@@ -3,6 +3,7 @@ package clause_test
 import (
 	"fmt"
 	"lform/clause"
+	"testing"
 )
 
 type User struct {
@@ -10,7 +11,7 @@ type User struct {
 	Name string
 }
 
-func BuilderTest() {
+func TestBuilder(t *testing.T) {
 	queryBuilders := clause.Querybuilders
 	userStruct := &User{Id: 1, Name: "usename"}
 	// insert

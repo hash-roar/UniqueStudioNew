@@ -13,7 +13,7 @@ func (s *Session) Insert(values ...interface{}) (int64, error) {
 	flatValues := make([]interface{}, 0)
 	for _, value := range values {
 		table := s.Model(value).GetTable()
-		s.clause.BuildSqlSlice(clause.INSERT, table.Name, table.FieldNames)
+		s.clause.BuildSqlSlice(clause.INSERT, table.Name, table.DbFieldName)
 		flatValues = append(flatValues, table.FlatenValues(value))
 	}
 	s.clause.BuildSqlSlice(clause.VALUES, flatValues...)
