@@ -13,19 +13,26 @@ func init() {
 	router.StaticFile("/favicon.ico", "web/assets/girl.ico")
 	router.Static("/static", "web/assets")
 
-	// init auth api
-	initAuthApi()
+	// init login api
+	initLoginApi()
 
+	// init oauth api
+	initOauthApi()
 	//init daylireportApi
 	initDailyReportApi()
 }
 
-func initAuthApi() {
+func initLoginApi() {
 	router.GET("/loginpage", LoginPage)
 	router.POST("/login", Login)
 	router.GET("/registerpage", registerPage)
 	router.POST("/register", register)
 }
+
+func initOauthApi() {
+	router.GET("/oauth-page", Oauth2Page)
+}
+
 func initDailyReportApi() {
 	router.GET("/", Index)
 }

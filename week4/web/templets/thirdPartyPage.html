@@ -10,9 +10,15 @@
 </head>
 <body>
     
-    <div class=" container">
-        <div class=" row w-75 mx-auto mt-5">
-            <button class=" btn btn-block btn-dark">write report</button>
+    <div class=" container border border-secondary mt-5">
+        <div class=" row w-75 mx-auto mt-5 mb-5">
+            <form action="http://localhost:8080/oauth-page" method="get" class=" w-100">
+                <input type="text" name="response_type" value="{{.responseType}}" hidden>
+                <input type="text" name="client_id" value="{{.clientId}}" hidden>
+                <input type="text" value="redirect_url" value="{{.redirectUrl}}" hidden>
+                <input type="text" name="scope" value="{{.scope}}" hidden>
+                <button class=" btn btn-block btn-dark">write report</button>
+            </form>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

@@ -26,13 +26,17 @@ type Claims struct {
 
 func LoginPage(c *gin.Context) {
 	c.HTML(http.StatusOK, "login.html", gin.H{
-		"title": "login",
+		"title":            "login",
+		"loginRedirectUrl": c.Query("loginRedirectUrl"),
+		"redirectParma":    c.Request.URL.RawQuery,
 	})
 }
 
 func Login(c *gin.Context) {
 	userName := c.PostForm("name")
 	userPassword := c.PostForm("password")
+	redirectUrl := c.PostForm("loginRedirectUrl")
+	redirectParma := c.PostForm("redirectParma")
 	if userName == "" || userPassword == "" {
 		c.JSON(http.StatusOK, gin.H{
 			"status":  1001,
@@ -57,6 +61,10 @@ func Login(c *gin.Context) {
 	}
 	tokenStr := generateToken(int(userInfo.ID))
 	c.SetCookie("token", tokenStr, maxAge, "/", "localhost", false, true)
+	if redirectUrl != "" {
+		c.Redirect(http.StatusMovedPermanently, redirectUrl+"?"+redirectParma)
+		return
+	}
 	c.JSON(http.StatusOK, gin.H{
 		"status":  200,
 		"message": "login successful",

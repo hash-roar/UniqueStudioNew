@@ -9,9 +9,14 @@
     <title>Authorization</title>
 </head>
 <body>
-    <div class=" container border-info border mt-5">
-        <div class="row w-75 p-5 mx-auto">
-            <form  class=" mx-auto w-50">
+    <div class=" container  mt-5">
+       <div class=" jumbotron">
+        <div class="row w-75  mx-auto">
+            <form  class="w-50" action="/send-auth-code" method="post">
+                <h1>Authorize</h1>
+                <input type="text" name="redirectUrl" hidden value="{{.redirectUrl}}">
+                <input type="text" name="clientId" hidden value="{{.clientId}}">
+                <input type="text" name="scope" hidden value="{{.scope}}">
                 <div class=" form-group form-check">
                     <input type="checkbox" checked ='checked' class=" form-check-input"  name="auth_id" id="c1">
                     <label for="c1">get your id</label>
@@ -20,9 +25,11 @@
                     <input type="checkbox" class=" form-check-input" name="auth_name" name="" id="c1">
                     <label for="c1">get your name</label>
                 </div>
-                <button class=" btn btn-danger btn-block w-100">Authorize</button>
+                <hr class=" my-4">
+                <button class=" btn btn-primary btn-block w-100">Allow</button>
             </form>
         </div>
+       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

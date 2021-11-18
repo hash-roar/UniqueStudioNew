@@ -1,0 +1,55 @@
+Date : 2021-11-17 21:43:20
+Directory : d:\working\UniqueStudioNew\week4
+Total : 20 files,  715 codes, 29 comments, 78 blanks, all 822 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| Go               |         12 |        281 |         27 |         59 |        367 |
+| Go Checksum File |          1 |        212 |          0 |          1 |        213 |
+| HTML             |          6 |        188 |          2 |         15 |        205 |
+| XML              |          1 |         34 |          0 |          3 |         37 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                             | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                |         20 |        715 |         29 |         78 |        822 |
+| dailyReport                                                      |          1 |          1 |          0 |          1 |          2 |
+| dbHandle                                                         |          2 |         36 |          0 |         11 |         47 |
+| thirdParty                                                       |          1 |          7 |          0 |          4 |         11 |
+| web                                                              |         14 |        425 |         29 |         58 |        512 |
+| web\handlers                                                     |          2 |         34 |          0 |          8 |         42 |
+| web\model                                                        |          1 |          8 |          0 |          3 |         11 |
+| web\routers                                                      |          4 |        184 |         27 |         28 |        239 |
+| web\templets                                                     |          6 |        188 |          2 |         15 |        205 |
++------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                         | language         | code       | comment    | blank      | total      |
++------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| d:\working\UniqueStudioNew\week4\dailyReport\index.go            | Go               |          1 |          0 |          1 |          2 |
+| d:\working\UniqueStudioNew\week4\dbHandle\postgresqlHandle.go    | Go               |         13 |          0 |          5 |         18 |
+| d:\working\UniqueStudioNew\week4\dbHandle\redisHandle.go         | Go               |         23 |          0 |          6 |         29 |
+| d:\working\UniqueStudioNew\week4\go.mod                          | XML              |         34 |          0 |          3 |         37 |
+| d:\working\UniqueStudioNew\week4\go.sum                          | Go Checksum File |        212 |          0 |          1 |        213 |
+| d:\working\UniqueStudioNew\week4\thirdParty\main.go              | Go               |          7 |          0 |          4 |         11 |
+| d:\working\UniqueStudioNew\week4\web\handlers\handleCahche.go    | Go               |          1 |          0 |          1 |          2 |
+| d:\working\UniqueStudioNew\week4\web\handlers\handleDb.go        | Go               |         33 |          0 |          7 |         40 |
+| d:\working\UniqueStudioNew\week4\web\main.go                     | Go               |         11 |          0 |          4 |         15 |
+| d:\working\UniqueStudioNew\week4\web\model\user.go               | Go               |          8 |          0 |          3 |         11 |
+| d:\working\UniqueStudioNew\week4\web\routers\dailyreport.go      | Go               |         19 |          0 |          4 |         23 |
+| d:\working\UniqueStudioNew\week4\web\routers\login.go            | Go               |        145 |          0 |         16 |        161 |
+| d:\working\UniqueStudioNew\week4\web\routers\oauth2.go           | Go               |         14 |          0 |          5 |         19 |
+| d:\working\UniqueStudioNew\week4\web\routers\routers.go          | Go               |          6 |         27 |          3 |         36 |
+| d:\working\UniqueStudioNew\week4\web\templets\authorization.html | HTML             |         34 |          0 |          0 |         34 |
+| d:\working\UniqueStudioNew\week4\web\templets\index.html         | HTML             |         11 |          0 |          1 |         12 |
+| d:\working\UniqueStudioNew\week4\web\templets\login.html         | HTML             |         51 |          0 |          6 |         57 |
+| d:\working\UniqueStudioNew\week4\web\templets\register.html      | HTML             |         49 |          2 |          6 |         57 |
+| d:\working\UniqueStudioNew\week4\web\templets\thirdpage.html     | HTML             |         24 |          0 |          1 |         25 |
+| d:\working\UniqueStudioNew\week4\web\templets\writereport.html   | HTML             |         19 |          0 |          1 |         20 |
+| Total                                                            |                  |        715 |         29 |         78 |        822 |
++------------------------------------------------------------------+------------------+------------+------------+------------+------------+
