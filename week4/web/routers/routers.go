@@ -31,6 +31,8 @@ func initLoginApi() {
 
 func initOauthApi() {
 	router.GET("/oauth-page", Oauth2Page)
+	router.GET("/send-auth-code", SendAuthCode)
+	router.POST("/oauth", Oauth2)
 }
 
 func initDailyReportApi() {
