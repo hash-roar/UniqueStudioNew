@@ -42,6 +42,7 @@ func Login(c *gin.Context) {
 			"status":  1001,
 			"message": "name and password can not be null",
 		})
+		return
 	}
 	userInfo := handlers.GetUserInfo(userName)
 	if userInfo == nil {
@@ -58,6 +59,7 @@ func Login(c *gin.Context) {
 			"status":  1003,
 			"message": "wrong password",
 		})
+		return
 	}
 	tokenStr := generateToken(int(userInfo.ID))
 	c.SetCookie("token", tokenStr, maxAge, "/", "localhost", false, true)
@@ -165,4 +167,17 @@ func refreshToken(tokenStr string) string {
 		return ""
 	}
 	return tokenStrAlter
+}
+
+func getUserInfoByToken(token string) *model.User {
+	claim := &Claims{}
+	_, err := jwt.ParseWithClaims(token, claim, func(t *jwt.Token) (interface{}, error) {
+		return jwtKey, nil
+	})
+	if err != nil {
+		log.Println(err)
+	}
+	id := claim.Uid
+	userInfo := handlers.GetUserInfo(id)
+	return userInfo
 }

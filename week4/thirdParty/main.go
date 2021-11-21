@@ -28,7 +28,7 @@ func main() {
 			"responseType": "code",
 			"clientId":     clientId,
 			"redirectUrl":  "http://localhost:8081/fetch-token",
-			"scope":        "dailyReport",
+			"scope":        "selfDailyReport",
 		})
 	})
 	router.GET("/fetch-token", func(c *gin.Context) {
@@ -51,8 +51,15 @@ func main() {
 			fmt.Println(err3)
 		}
 
-		c.SetCookie("client_token", userInfo.userToken, userInfo.expireTime, "/", "localhost", false, true)
-		c.String(200, "authorize success")
+		c.SetCookie("client_token", userInfo.userToken, userInfo.expireTime*3600, "/", "localhost", false, true)
+		c.Redirect(http.StatusTemporaryRedirect, "http://localhost:8080/auth/write-page")
+	})
+	router.Any("/write-report", func(c *gin.Context) {
+		uid := c.Query("uid")
+		c.HTML(200, "writeReport.html", gin.H{"id": uid})
+	})
+	router.Any("/add-report", func(c *gin.Context) {
+
 	})
 	router.Run("127.0.0.1:8081")
 }

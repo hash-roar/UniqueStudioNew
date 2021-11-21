@@ -12,7 +12,7 @@
     <div class=" container  mt-5">
        <div class=" jumbotron">
         <div class="row w-75  mx-auto">
-            <form  class="w-50" action="/send-auth-code" method="get">
+            <form  class="w-50" action="/auth/send-auth-code" method="get">
                 <h1>Authorize</h1>
                 <input type="text" name="redirectUrl" hidden value="{{.redirectUrl}}">
                 <input type="text" name="clientId" hidden value="{{.clientId}}">
@@ -22,7 +22,7 @@
                     <label for="c1">get your identity</label>
                 </div>
                 <div class=" form-group form-check">
-                    <input type="checkbox" class=" form-check-input" value="dailyReport" name="auth" name="" id="c1">
+                    <input type="checkbox" class=" form-check-input" value="self:dailyReport" name="auth" name="" id="c1">
                     <label for="c1">access your daily report</label>
                 </div>
                 <div class=" form-group form-check">
