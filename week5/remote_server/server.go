@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 	"log"
-	sockUtils "mysock5/sock_utils"
+	sockutils "mysock5/sock_utils"
 	"net"
 	"os"
 )
@@ -15,30 +15,15 @@ type RemoteServerConf struct {
 }
 
 type RemoteServer struct {
-	Listener        *net.TCPListener
-	LocalServerConn *net.TCPConn //can be designed as array
-	Conf            RemoteServerConf
+	Listener           *net.TCPListener
+	LocalServerConn    *net.TCPConn //can be designed as array
+	Conf               RemoteServerConf
+	LocalConfusionConn *sockutils.Rc4Cipher
 }
 
 type ConnPipe struct {
 	LocalServerConn *net.TCPConn
 	DestConn        *net.TCPConn
-}
-
-func main() {
-	service := "127.0.0.1:8080"
-	tcpAddr, err := net.ResolveTCPAddr("tcp4", service)
-	sockUtils.CheckErrorFatal(err)
-	listener, err := net.ListenTCP("tcp", tcpAddr)
-	sockUtils.CheckErrorFatal(err)
-	for {
-		conn, err := listener.Accept()
-		if err != nil {
-			sockUtils.CheckErrorLog(err)
-			continue
-		}
-		go ConnHandle(conn)
-	}
 }
 
 func NewRemoteServer(conf *RemoteServerConf) (*RemoteServer, error) {
@@ -59,7 +44,12 @@ func (s *RemoteServer) ListenLocalServer() {
 func (s *RemoteServer) AcceptLocalConn() {
 	defer s.Listener.Close()
 	for {
-		localServerConn, err := s.Listener.AcceptTCP()
+		conn, err := s.Listener.AcceptTCP()
+		if err != nil {
+			log.Println(err)
+			continue
+		}
+		localServerConn, err := sockutils.NewConfusionSock(conn)
 		if err != nil {
 			log.Println(err)
 			continue
@@ -68,7 +58,7 @@ func (s *RemoteServer) AcceptLocalConn() {
 	}
 }
 
-func ConnHandle(conn *net.TCPConn) {
+func ConnHandle(conn *sockutils.ConfusedSocket) {
 	defer conn.Close()
 	if version, err := ParseHeader(conn); err != nil || version != SocksV5 {
 		log.Println(err)

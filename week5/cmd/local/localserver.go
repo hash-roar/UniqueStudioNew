@@ -7,12 +7,13 @@ import (
 )
 
 func main() {
-	localIp, err := net.ResolveIPAddr("tcp", "127.0.0.1")
+	localIp, err := net.ResolveIPAddr("ip", "127.0.0.1")
 	if err != nil {
+		log.Println(err)
 		log.Fatal("parse ip error")
 	}
-	conf := localserver.LocalServerConfig{LocalListenAddr: &net.TCPAddr{IP: localIp.IP, Port: 808},
-		RemoteServerAddr: &net.TCPAddr{IP: localIp.IP, Port: 8081}}
+	conf := localserver.LocalServerConfig{LocalListenAddr: &net.TCPAddr{IP: localIp.IP, Port: 8081},
+		RemoteServerAddr: &net.TCPAddr{IP: localIp.IP, Port: 8080}}
 	server, err := localserver.NewServer(&conf)
 	if err != nil {
 		log.Fatal(err)

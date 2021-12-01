@@ -2,8 +2,9 @@ package localserver
 
 import (
 	"errors"
-	"io"
+	"fmt"
 	"log"
+	sockutils "mysock5/sock_utils"
 	"net"
 )
 
@@ -66,8 +67,48 @@ func (s *LocalServer) clientConnHandler(conn *net.TCPConn) {
 		return
 	}
 	defer remoteServerConn.Close()
-	go io.Copy(conn, remoteServerConn)
-	go io.Copy(remoteServerConn, conn)
+	remoteConn, err := sockutils.NewConfusionSock(remoteServerConn)
+	if err != nil {
+		return
+	}
+	s.Forwardata(conn, remoteConn)
+}
+
+func (s *LocalServer) Forwardata(src *net.TCPConn, des *sockutils.ConfusedSocket) {
+	exitChan := make(chan bool, 1)
+	go func(src *net.TCPConn, des *sockutils.ConfusedSocket, exit chan bool) {
+		buf := make([]byte, 4096)
+		// defer src.Close()
+		// log.Println("return ")
+		// defer des.Close()
+		for {
+			length, err := src.Read(buf)
+			if err != nil {
+				log.Print(err)
+				exit <- true
+				return
+			}
+			fmt.Println(buf[:length])
+			des.Write(buf[:length])
+		}
+	}(src, des, exitChan)
+	go func(src *net.TCPConn, des *sockutils.ConfusedSocket, exit chan bool) {
+		buf := make([]byte, 4096)
+		// defer src.Close()
+		// log.Println("return ")
+		// defer des.Close()
+		for {
+			length, err := des.Read(buf)
+			if err != nil {
+				log.Print(err)
+				exit <- true
+				return
+			}
+			fmt.Println(buf[:length])
+			des.Write(buf[:length])
+		}
+	}(src, des, exitChan)
+	<-exitChan
 }
 
 func (s *LocalServer) connectRemoteServer() (*net.TCPConn, error) {
