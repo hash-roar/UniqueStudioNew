@@ -2,6 +2,7 @@ package remoteserver
 
 import (
 	"errors"
+	"fmt"
 	sockutils "mysock5/sock_utils"
 )
 
@@ -30,6 +31,7 @@ func ParseHeader(conn *sockutils.ConfusedSocket) (uint8, error) {
 	// +----+----------+----------+
 	header := make([]byte, 255)
 	length, _ := conn.ReadFull(header[:2])
+	fmt.Println("header:  ", header[:2])
 	sockVersion := header[0]
 	if length != 2 {
 		return 0, errors.New("parse header error")
@@ -75,7 +77,6 @@ func getUserInfo(conn *sockutils.ConfusedSocket) (version byte, name string, pas
 	// 1字节 	    1字节 		         1-255字节 	 1字节 				 1-255字节
 	// 0x01 	    0x01 	             0x0a 	    0x01 	            0x0a
 	buffer := make([]byte, 256)
-	conn.ReadFull(buffer[0:1])
 	if length, _ := conn.ReadFull(buffer[:1]); length != 1 {
 		err = errors.New("get version error")
 		return

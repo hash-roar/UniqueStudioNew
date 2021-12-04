@@ -63,6 +63,7 @@ func ParseClientRequest(conn *sockutils.ConfusedSocket) (*ClientRequestInfo, err
 func AttachConnect(conn *sockutils.ConfusedSocket) (*net.TCPConn, error) {
 
 	requestInfo, err := ParseClientRequest(conn)
+	fmt.Println(*requestInfo)
 	if err != nil {
 		return nil, err
 	}

@@ -88,7 +88,7 @@ func (s *LocalServer) Forwardata(src *net.TCPConn, des *sockutils.ConfusedSocket
 				exit <- true
 				return
 			}
-			fmt.Println(buf[:length])
+			fmt.Println("send to remote:-->", buf[:length])
 			des.Write(buf[:length])
 		}
 	}(src, des, exitChan)
@@ -104,8 +104,8 @@ func (s *LocalServer) Forwardata(src *net.TCPConn, des *sockutils.ConfusedSocket
 				exit <- true
 				return
 			}
-			fmt.Println(buf[:length])
-			des.Write(buf[:length])
+			fmt.Println("receive from remote:--->", buf[:length])
+			src.Write(buf[:length])
 		}
 	}(src, des, exitChan)
 	<-exitChan
